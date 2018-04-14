@@ -1,0 +1,33 @@
+﻿@model List<string>
+@Html.RouteLink(@Resources.Resource.Ratio, new
+{
+    controller = "Home",
+    action = "Index",
+    rated = true
+},new {
+@class = "btn btn-block btn-default btn-md"})
+
+@Html.ActionLink(Convert.ToBoolean(TempData["Pressed"]) ? @Resources.Resource.HideGenres : @Resources.Resource.ShowGenres, "ShowGenres", "Navigation", new { pressed = Convert.ToBoolean(TempData["Pressed"])}, new {
+@class = "btn btn-block btn-default btn-md"})
+@if (TempData["Pressed"]=="true")
+{ 
+    TempData.Keep("Pressed");
+using (Html.BeginForm("Filter", "Home"))
+{
+    foreach (var item in Model)
+    {
+        <div class="btn btn-block btn-default btn-md ">
+           <div style="display:inline; border-radius: 20px;" class="text-right">
+    <input type="checkbox" name="selectedCategories" value="@item" style="border-radius: 20px;
+    background: linear-gradient( -90deg, rgb( 0, 238, 118) 0%, rgb( 0, 205, 102) 59.229%, rgb( 0, 139, 69) 100%); color:white;"/>
+</div><div class="text-center" style="display:inline;">@item</div>
+        </div>
+
+    }
+
+    <input class="btn btn-block btn-default btn-group-md" type="submit" value="Filter" style="background: linear-gradient( -90deg, rgb( 0, 238, 118) 0%, rgb( 0, 205, 102) 59.229%, rgb( 0, 139, 69) 100%);
+    border-radius: 20px;"/>
+
+}
+}
+

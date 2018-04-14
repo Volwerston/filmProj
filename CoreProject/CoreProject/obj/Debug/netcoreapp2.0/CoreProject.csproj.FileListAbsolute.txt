@@ -1,0 +1,11 @@
+E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.csprojResolveAssemblyReference.cache
+E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.Migrations.ApplicationDbContext.201704181742448_InitialCreate.resources
+E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.Migrations.ApplicationDbContext.201704181751020_InitialDatabaseCreation.resources
+E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.Migrations.ApplicationDbContext.201704181754314_InitialDatabaseCreation1.resources
+E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.Migrations.FilmContext.201704181756052_InitialCreate.resources
+E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.Migrations.FilmContext.201704220629555_Initial.resources
+E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.Migrations.FilmContext.201704220705282_Initia1l.resources
+E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.csproj.GenerateResource.cache
+E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.csproj.CoreCompileInputs.cache
+E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.AssemblyInfoInputs.cache
+E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.AssemblyInfo.cs

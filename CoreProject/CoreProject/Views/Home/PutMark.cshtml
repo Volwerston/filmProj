@@ -1,0 +1,8 @@
+﻿@model FilmDatabase.Models.Mark
+@using(Html.BeginForm("PutMark","Home"))
+{
+    
+    @Html.DropDownListFor(a=>a.MarkValue,(SelectList)ViewBag.List,"Оцінка")
+    <input type="submit" value="Оцінити" sstyle="background: linear-gradient( -90deg, rgb( 0, 238, 118) 0%, rgb( 0, 205, 102) 59.229%, rgb( 0, 139, 69) 100%);
+    border-radius: 20px;"/>
+}
