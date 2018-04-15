@@ -18,19 +18,14 @@ namespace FilmDatabase.Controllers
     public class ModeratorController : Controller
     {
          IFilmRepository repo;
-        IIdentityRepository repos;
+         IIdentityRepository repos;
 
-        public ModeratorController()
+        public ModeratorController(IFilmRepository fr, IIdentityRepository ir)
         {
-            repo = new FilmRepository();
-            repos = new IdentityRepository();
+            repo = fr;
+            repos = ir;
+        }
 
-        }
-        public ModeratorController(IFilmRepository context, IIdentityRepository repository)
-        {
-            repo = context;
-            repos = repository;
-        }
         [Authorize(Roles = "moderator")]
         public ViewResult Index()
         {

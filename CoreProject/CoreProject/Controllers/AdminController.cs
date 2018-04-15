@@ -16,12 +16,7 @@ namespace FilmDatabase.Controllers
         IIdentityRepository repos;
         private UserManager<ApplicationUser> userManager;
         private RoleManager<IdentityRole> roleManager;
-        public AdminController(IFilmRepository fr, IIdentityRepository ir)
-        {
-            repo = fr;
-            repos = ir;
 
-        }
         public AdminController(IFilmRepository context, IIdentityRepository repository, UserManager<ApplicationUser> userMgr, RoleManager<IdentityRole> rm)
         {
             repo = context;

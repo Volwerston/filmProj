@@ -11,12 +11,7 @@ namespace FilmDatabase.Controllers
     public class NavigationController : Controller
     {
         IFilmRepository repo;
-        public NavigationController(FilmRepository fr)
-        {
-            repo = fr;
-            //     TempData["Pressed"] = "false";
 
-        }
         public NavigationController(IFilmRepository context)
         {
             repo = context;

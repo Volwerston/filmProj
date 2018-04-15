@@ -17,41 +17,33 @@ namespace FilmDatabase.Controllers
 
         IFilmRepository repo;
         IIdentityRepository repos;
+
         public HomeController(FilmRepository fr, IIdentityRepository ir)
         {
             repo = fr;
             repos = ir;
-            
         }
-        public HomeController(IFilmRepository context)
-        {
-            repo = context;
-        }
-            public HomeController(IFilmRepository context, IIdentityRepository rep)
-        {
-            repo = context;
-            repos = rep;
-        }
-        public ViewResult Index(string search=null,bool rated=false,string category=null)
+
+        public ViewResult Index(string search = null, bool rated = false, string category = null)
         {
 
             List<Film> films;
-            if(category!=null)
+            if (category != null)
             {
                 films = repo.Films.Where(a => a.Categories.Any(b => b.Name == category)).ToList();
-               
+
             }
             else
             {
                 films = repo.Films.ToList();
             }
-            if(rated)
+            if (rated)
             {
-                
-                films = repo.Include().Where(a=>a.Marks.Count!=0).OrderByDescending(a => a.Marks.Average(b => b.MarkValue)).ToList();
-                
+
+                films = repo.Include().Where(a => a.Marks.Count != 0).OrderByDescending(a => a.Marks.Average(b => b.MarkValue)).ToList();
+
             }
-            if(search!=null)
+            if (search != null)
             {
                 search = search.ToLower();
                 films = repo.Films.Where(a => a.Name.ToLower().Contains(search)).ToList();
@@ -65,7 +57,7 @@ namespace FilmDatabase.Controllers
             List<Film> films;
             if (selectedCategories != null)
             {
-               films = repo.Films.Where(film => selectedCategories.All(cat => film.Categories.Any(fcat => fcat.Name == cat))).ToList();
+                films = repo.Films.Where(film => selectedCategories.All(cat => film.Categories.Any(fcat => fcat.Name == cat))).ToList();
             }
             else
             {
@@ -77,11 +69,11 @@ namespace FilmDatabase.Controllers
         [HttpGet]
         public ActionResult CreateComment()
         {
-            
+
             return View();
         }
 
-       
+
 
         [HttpPost]
         public ActionResult CreateComment(Comment comment)
@@ -91,7 +83,7 @@ namespace FilmDatabase.Controllers
             {
                 comment.Date = DateTime.Now;
                 comment.UserName = User.Identity.Name;
-              
+
 
                 Film film = repo.Films.Find(m => m.Id == filmId);
                 comment.Film = film;
@@ -100,8 +92,8 @@ namespace FilmDatabase.Controllers
                 repo.SaveChanges();
             }
 
-                return RedirectToAction("Details", new { id = filmId });
-            
+            return RedirectToAction("Details", new { id = filmId });
+
 
         }
 
@@ -112,16 +104,16 @@ namespace FilmDatabase.Controllers
                 return new StatusCodeResult(400);
             }
             Film product = repo.Include().Find(m => m.Id == id);
-            
+
             if (product == null)
             {
                 return NotFound();
             }
-           
+
             //ApplicationDbContext db = new ApplicationDbContext();
             string currentUserId = GetUserId();
             ApplicationUser currentUser = repos.Users.FirstOrDefault(x => x.Id == currentUserId);
-         //   ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
+            //   ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
             var list = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var aList = list.Select((x, i) => new { Value = x, Data = x }).ToList();
             ViewBag.List = new SelectList(aList, "Value", "Data");
@@ -129,7 +121,7 @@ namespace FilmDatabase.Controllers
             {
                 ViewBag.Blocked = currentUser.Blocked;
             }
-           
+
             return View(product);
         }
 
@@ -161,9 +153,9 @@ namespace FilmDatabase.Controllers
             }
 
             return RedirectToAction("Details", new { id = filmId });
-           
+
         }
-        
+
 
     }
 }
