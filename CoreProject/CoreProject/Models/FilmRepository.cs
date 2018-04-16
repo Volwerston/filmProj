@@ -5,12 +5,12 @@ namespace FilmDatabase.Models
 {
     public class FilmRepository : IFilmRepository
     {
-        public FilmRepository(FilmContext _c)
+        public FilmRepository(ApplicationDbContext _c)
         {
             context = _c;
         }
 
-        private FilmContext context;
+        private ApplicationDbContext context;
         public List<Film> Films
         {
             get { return context.Films.ToList(); }
@@ -59,7 +59,7 @@ namespace FilmDatabase.Models
         }
         public List<Film> Include()
         {
-            return context.Films.Include(p => p.Comments).Include(m=>m.Marks).ToList();
+            return context.Films/*.Include(p => p.Comments)*/.Include(m=>m.Marks).ToList();
         }
 
 

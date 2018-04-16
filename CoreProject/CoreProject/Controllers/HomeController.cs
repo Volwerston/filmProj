@@ -18,7 +18,7 @@ namespace FilmDatabase.Controllers
         IFilmRepository repo;
         IIdentityRepository repos;
 
-        public HomeController(FilmRepository fr, IIdentityRepository ir)
+        public HomeController(IFilmRepository fr, IIdentityRepository ir)
         {
             repo = fr;
             repos = ir;

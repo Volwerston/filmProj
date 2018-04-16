@@ -9,7 +9,16 @@ namespace FilmDatabase.Models
     public class IdentityRepository:IIdentityRepository//used in controller
     {
 
-        private ApplicationDbContext context = new ApplicationDbContext();
+        private ApplicationDbContext context;
+        public RoleManager<IdentityRole> roleManager;
+
+        public IdentityRepository(ApplicationDbContext _context, RoleManager<IdentityRole> rm)
+        {
+            context = _context;
+            roleManager = rm;
+        }
+
+
         public ApplicationUser FindById(string id)//when you want to change role, it is used to find it in controller
         {
             return context.Users.Single(i => i.Id == id);
@@ -30,7 +39,7 @@ namespace FilmDatabase.Models
         public List<ApplicationUser> GetUsersInRole(string role)
         {
             var role1 = context.Roles.SingleOrDefault(m => m.Name == "user");
-            var usersInRole = context.Users.Where(m => m.Roles.Any(r => r.RoleId == role1.Id)).ToList();
+            var usersInRole = context.Users.Where(m => roleManager.FindByIdAsync(m.Id) != null).ToList();
             return usersInRole;
         }
 

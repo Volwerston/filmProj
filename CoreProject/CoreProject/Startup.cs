@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FilmDatabase.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,9 +26,13 @@ namespace CoreProject
         {
             services.AddMvc();
 
-            services.AddDbContext<FilmContext>(
+            services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"], b => b.MigrationsAssembly("FilmSearch"))
             );
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddScoped<IFilmRepository, FilmRepository>();
             services.AddScoped<IIdentityRepository, IdentityRepository>();
@@ -47,6 +52,7 @@ namespace CoreProject
             }
 
             app.UseStaticFiles();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

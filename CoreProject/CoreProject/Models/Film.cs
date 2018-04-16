@@ -15,14 +15,14 @@ namespace FilmDatabase.Models
 
         public byte[] Image { get; set; }
 
-        public ICollection<Comment> Comments {get;set;}
+        //public ICollection<Comment> Comments {get;set;}
 
         public virtual ICollection<Category> Categories { get; set; }
         public ICollection<Mark> Marks { get; set; }
         public Film()
         {
             Categories = new List<Category>();
-            Comments = new List<Comment>();
+            //Comments = new List<Comment>();
             Marks = new List<Mark>();
         }
     }

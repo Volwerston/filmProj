@@ -7,10 +7,12 @@ using FilmDatabase.Models;
 using System.IO;
 using System.Drawing;
 using System.Net;
+using System.Net.Mime;
 using System.Text;
 using FilmDatabase.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace FilmDatabase.Controllers
 {
@@ -110,15 +112,14 @@ namespace FilmDatabase.Controllers
                 if (model.Image != null)
                 {
                     byte[] imageData = null;
-                    var binaryReader = new BinaryReader(model.Image.InputStream);
+                    var binaryReader = new BinaryReader(model.Image.OpenReadStream());
 
-                    imageData = binaryReader.ReadBytes(model.Image.ContentLength);
+                    imageData = binaryReader.ReadBytes((int)model.Image.Length);
                     binaryReader.Close();
                     MemoryStream ms = new MemoryStream(imageData);
-                    Image returnImage = Image.FromStream(ms);
                     ms.Close();
-                    ViewBag.Width = returnImage.Width;
-                    ViewBag.Height = returnImage.Height;
+                    ViewBag.Width = 0;
+                    ViewBag.Height = 0;
                     film.Image = imageData;
                 }
                 repo.Add(film);
@@ -164,7 +165,7 @@ namespace FilmDatabase.Controllers
         [HttpPost]
         [Authorize(Roles = "moderator")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Film model, int[] selectedCategories, HttpPostedFileBase upload = null)
+        public ActionResult Edit(Film model, int[] selectedCategories, IFormFile upload = null)
         {
             if (ModelState.IsValid)
             {
@@ -190,14 +191,13 @@ namespace FilmDatabase.Controllers
                 if (upload != null)
                 {
                     byte[] imageData = null;
-                    using (var binaryReader = new BinaryReader(upload.InputStream))
+                    using (var binaryReader = new BinaryReader(upload.OpenReadStream()))
                     {
-                        imageData = binaryReader.ReadBytes(upload.ContentLength);
+                        imageData = binaryReader.ReadBytes((int)upload.Length);
                     }
                     MemoryStream ms = new MemoryStream(imageData);
-                    Image returnImage = Image.FromStream(ms);
-                    ViewBag.Width = returnImage.Width;
-                    ViewBag.Height = returnImage.Height;
+                    ViewBag.Width = 0;
+                    ViewBag.Height = 0;
                     product.Image = imageData;
                 }
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+
 namespace FilmDatabase.Models
 {
     public class FilmViewModel//editing film
@@ -20,7 +22,7 @@ namespace FilmDatabase.Models
       
         [DataType(DataType.Upload)]
         [Display(Name = "Зображення")]
-        public HttpPostedFileBase Image { get; set; }
+        public IFormFile Image { get; set; }
 
         [Required(ErrorMessage = "Додайте жанри")]
         [Display(Name = "Жанри")]

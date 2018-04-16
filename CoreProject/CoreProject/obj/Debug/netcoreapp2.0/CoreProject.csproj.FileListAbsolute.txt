@@ -9,3 +9,14 @@ E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.csproj.Gener
 E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.csproj.CoreCompileInputs.cache
 E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.AssemblyInfoInputs.cache
 E:\core\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.AssemblyInfo.cs
+D:\filmProj\CoreProject\CoreProject\bin\Debug\netcoreapp2.0\CoreProject.deps.json
+D:\filmProj\CoreProject\CoreProject\bin\Debug\netcoreapp2.0\CoreProject.runtimeconfig.json
+D:\filmProj\CoreProject\CoreProject\bin\Debug\netcoreapp2.0\CoreProject.runtimeconfig.dev.json
+D:\filmProj\CoreProject\CoreProject\bin\Debug\netcoreapp2.0\CoreProject.dll
+D:\filmProj\CoreProject\CoreProject\bin\Debug\netcoreapp2.0\CoreProject.pdb
+D:\filmProj\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.csproj.CoreCompileInputs.cache
+D:\filmProj\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.AssemblyInfoInputs.cache
+D:\filmProj\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.AssemblyInfo.cs
+D:\filmProj\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.dll
+D:\filmProj\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.pdb
+D:\filmProj\CoreProject\CoreProject\obj\Debug\netcoreapp2.0\CoreProject.csprojResolveAssemblyReference.cache

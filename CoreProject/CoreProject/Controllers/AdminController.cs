@@ -27,20 +27,20 @@ namespace FilmDatabase.Controllers
 
         private string GetUserId() => this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        [Authorize(Roles = "admin")]
-        public ViewResult ViewUsers()
-        {
-           foreach(var user in repos.Users)
-           {
-               if(user.Roles.Count==0)
-               {
-                   userManager.AddToRoleAsync(user, "user");
-               }
-           }
-            ViewBag.UserCount = repos.GetUsersInRole("user").Count;
-            return View(repos.Users.Where(a=>a.Id!=GetUserId()).ToList());
+        //[Authorize(Roles = "admin")]
+        //public ViewResult ViewUsers()
+        //{
+        //   foreach(var user in repos.Users)
+        //   {
+        //       if(user.Roles.Count==0)
+        //       {
+        //           userManager.AddToRoleAsync(user, "user");
+        //       }
+        //   }
+        //    ViewBag.UserCount = repos.GetUsersInRole("user").Count;
+        //    return View(repos.Users.Where(a=>a.Id!=GetUserId()).ToList());
 
-        }
+        //}
 
         [Authorize(Roles = "admin")]
         public ActionResult Ban(string id)
@@ -61,23 +61,23 @@ namespace FilmDatabase.Controllers
             return RedirectToAction("ViewUsers", "Admin");
         }
 
-        [Authorize(Roles = "admin")]
-        public ActionResult PromoteToRole(string id, string role)
-        {
-          //  var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        //[Authorize(Roles = "admin")]
+        //public ActionResult PromoteToRole(string id, string role)
+        //{
+        //  //  var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             
-            var user = repos.FindById(id);
-            var role1 = repos.FindRole(role);
-            user.Roles.Clear();
-            IdentityUserRole userRole = new IdentityUserRole { RoleId = role1.Id, UserId = user.Id };
-            user.Roles.Add(userRole);
-            repos.SaveChanges();
+        //    var user = repos.FindById(id);
+        //    var role1 = repos.FindRole(role);
+        //    user.Roles.Clear();
+        //    IdentityUserRole userRole = new IdentityUserRole { RoleId = role1.Id, UserId = user.Id };
+        //    user.Roles.Add(userRole);
+        //    repos.SaveChanges();
 
            
           
-          return RedirectToAction("ViewUsers", "Admin");
+        //  return RedirectToAction("ViewUsers", "Admin");
 
-        }
+        //}
 
     }
 }
